@@ -1,0 +1,81 @@
+server:
+  port: 8105
+  servlet:
+    context-path: /api
+    session:
+      cookie:
+        domain: localhost
+        http-only: false
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/campus_partner?serverTimezone=Asia/Shanghai
+    username: root
+    password: zhourx
+  redis:
+    host: localhost
+    port: 6379
+#    password: 123456
+    database: 1
+  jackson:
+    time-zone: GMT+8
+    date-format: java.text.SimpleDateFormat
+  # 邮箱配置
+  mail:
+    host: smtp.163.com
+    username:
+    password:
+
+  session:
+    store-type: redis
+    # 5小时过期
+    timeout: 18000
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: on
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      logic-delete-field: isDelete
+      id-type: auto
+knife4j:
+  enable: true
+  openapi:
+    title: 新友会·伙伴匹配接口文档
+    description: "用户匹配系统"
+    email: zhourx1129@qq.com
+    version: v1.0.0
+    concat: zhourx
+    group:
+      super:
+        group-name: zhourx
+        api-rule: package
+        api-rule-resources:
+          - com.zhourx
+#  Quartz定时
+campus:
+  img: /img/
+  job: "0 0 0 * * ? *"
+
+# 阿里云对象存储
+aliyun:
+  oss:
+    file:
+      endpoint: oss-cn-guangzhou.aliyuncs.com
+      keyid: xxxxx
+      keysecret: xxxxxxx
+      bucketname: xxxxxx
+#minio对象存储
+minio:
+  endpoint: http://127.0.0.1:9000
+  accessKey: pJLYfyc4dLZIFUo20rAj
+  secretKey: 5rtYbUiut7UiM9h4q5s7EBTyKo6tXZADCkZRBgWz
+  bucketName: campus-partner
